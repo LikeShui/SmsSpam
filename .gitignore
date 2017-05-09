@@ -1,0 +1,10 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+C:\Users\alna173017\Desktop\SmsFiltering\app\src\main\java\com\ouaspel\anthony\smsfiltering\PhoneNumbers.java
