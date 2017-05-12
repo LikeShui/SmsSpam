@@ -21,11 +21,10 @@ public class Spam {//extends BroadcastReceiver {
 //        }
 //    }
 
-    public void spam(ArrayList<Officer> a, int n) {
+    public void spam(String number, int n) {
         SmsManager s = SmsManager.getDefault();
         for (int i=0; i < n;i++){
-            for (Officer o: a)
-                s.sendTextMessage(o.getNumber(), null, "You need to let the system know you are sending a report or not sending a report. Type /noreport for no report or /report for a report.", null, null);
+            s.sendTextMessage(number, null, "You need to let the system know you are sending a report or not sending a report. Type /noreport for no report or /report for a report.", null, null);
         }
     }
 }

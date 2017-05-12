@@ -11,7 +11,7 @@
     tools:context="com.ouaspel.anthony.smsfiltering.Main">
 
     <TextView
-        android:text="Make these idiots submit:"
+        android:text="Who is the victim:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/idiotCount"
@@ -29,32 +29,24 @@
         android:hint="Enter a number" />
 
     <Button
-        android:text="Remind them"
+        android:text="end their life"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spam"
+        android:id="@+id/button"
         android:elevation="0dp"
-        tools:text="Remind them"
+        tools:text="end their life"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
         android:layout_below="@+id/spamCount"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reset"
-        android:elevation="0dp"
-        tools:text="Reset"
-        android:layout_below="@+id/spam"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/notSubmitted"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/reset"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/spamCount"
+        android:id="@+id/messageText"
+        android:hint="Your message"
+        android:singleLine="false" />
 
 </RelativeLayout>
