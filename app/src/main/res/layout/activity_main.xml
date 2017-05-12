@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/spamCount"
+        android:id="@+id/phoneNumber"
         android:layout_below="@+id/idiotCount"
         android:layout_centerHorizontal="true"
-        android:hint="Enter a number" />
+        android:hint="Enter a phone number" />
 
     <Button
         android:text="end their life"
@@ -41,12 +41,22 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_below="@+id/phoneNumber"
+        android:layout_alignEnd="@+id/phoneNumber"
+        android:id="@+id/spamCount"
+        android:hint="Enter spam count" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
+        android:id="@+id/messageText"
         android:layout_below="@+id/spamCount"
         android:layout_alignStart="@+id/spamCount"
-        android:id="@+id/messageText"
-        android:hint="Your message"
+        android:hint="Message"
         android:singleLine="false" />
 
 </RelativeLayout>

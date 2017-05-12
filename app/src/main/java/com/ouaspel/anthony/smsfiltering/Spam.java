@@ -1,6 +1,7 @@
 package com.ouaspel.anthony.smsfiltering;
 
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
@@ -21,10 +22,15 @@ public class Spam {//extends BroadcastReceiver {
 //        }
 //    }
 
-    public void spam(String number, int n) {
-        SmsManager s = SmsManager.getDefault();
-        for (int i=0; i < n;i++){
-            s.sendTextMessage(number, null, "You need to let the system know you are sending a report or not sending a report. Type /noreport for no report or /report for a report.", null, null);
+    public boolean spam(String number, int n, String message) {
+        try {
+            SmsManager s = SmsManager.getDefault();
+            for (int i = 0; i < n; i++) {
+                s.sendTextMessage(number, null, message, null, null);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

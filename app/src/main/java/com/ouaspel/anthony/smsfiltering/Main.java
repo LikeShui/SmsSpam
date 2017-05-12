@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class Main extends Activity {
     public static TelephonyManager MANAGER;
+    private static final int SPAM_THRESHOLD = 100; //Any more messages than this is just ridiculous.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Android initialization
@@ -27,16 +29,37 @@ public class Main extends Activity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s = validateStringInput();
-                if (s != null) {
-                    int spamCount = validateIntInput();
-                    if (spamCount > 0 && spamCount < 151)
-                        new Spam().spam(s, spamCount);
-                    else
-                        Toast.makeText(Main.this, "Your number makes no sense, or just so big it'll crash the phone.", Toast.LENGTH_SHORT).show();
+                String phoneNumber = validatePhoneNumber();
+                if (phoneNumber != null) {
+                    String s = validateStringInput();
+                    if (s != null) {
+                        int spamCount = validateIntInput();
+                        if (spamCount > 0 && spamCount < SPAM_THRESHOLD)
+                            if (new Spam().spam(phoneNumber, spamCount, s))
+                                Toast.makeText(Main.this, "Success.", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(Main.this, "Sending failed.", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(Main.this, "Your number makes no sense, or just so big it'll crash the phone.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
+    }
+
+    private String validatePhoneNumber() {
+        String s = ((EditText) findViewById(R.id.phoneNumber)).getText().toString();
+        if (s.length() != 10) {
+            Toast.makeText(this, "Phone number bad length:" + s.length(), Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        String areaCode = s.substring(0,3);
+        if (areaCode.equals("586") || areaCode.equals("248")) {
+            return s;
+        }
+        Toast.makeText(this, "Protected the area code to be safe..." + areaCode + " isn't valid", Toast.LENGTH_SHORT).show();
+        return null;
     }
 
     private int validateIntInput() {
@@ -54,7 +77,7 @@ public class Main extends Activity {
     private String validateStringInput() {
         String s = null;
         try {
-            s = findViewById(R.id.messageText).toString();
+            s = ((EditText) findViewById(R.id.messageText)).getText().toString();
             if (s.length() > 160) {
                 Toast.makeText(this, "Message too long. Keep it simpler.", Toast.LENGTH_SHORT).show();
                 s = null;
